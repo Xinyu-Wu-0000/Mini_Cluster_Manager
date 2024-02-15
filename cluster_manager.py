@@ -22,7 +22,7 @@ class ClusterManager():
     def create(self, n):
         self.list_all()
         res = []
-        vollumes = {os.path.abspath(self.data_path): {
+        volumes = {os.path.abspath(self.data_path): {
             'bind': self.workdir + self.data_path, 'mode': 'rw'}}
         for idx in range(n):
             free_name = 0
@@ -33,7 +33,7 @@ class ClusterManager():
                     break
             con = self.cli.containers.create(
                 self.image_name,
-                volumes=vollumes,
+                volumes=volumes,
                 name=free_name,
                 tty=True)
             self.cli.api.stop(con.attrs["Id"])

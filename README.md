@@ -34,7 +34,7 @@ docker build . --tag my_task_image:latest
 
 ### 1. File Structure
 
-The main entry is `CM.py`, most of the functionality code in in `cluster_manager.py`. Client code to be excuted in containers is in `task2.py` and `task3.py`. `data` will be mounted by all container as a shared data volume.
+The main entry is `CM.py`, most of the functionality code in in `cluster_manager.py`. Client code to be executed in containers is in `task2.py` and `task3.py`. `data` will be mounted by all container as a shared data volume.
 
 
 ### 2. Command Help
@@ -96,7 +96,7 @@ create 4 containers:
 
 ```bash
 $ python CM.py create 4
-created 4 contaniers
+created 4 containers
 container 1 : my_task_container_0
 container 2 : my_task_container_1
 container 3 : my_task_container_2
@@ -107,7 +107,7 @@ create 4 containers more:
 
 ```bash
 $ python CM.py create 4
-created 4 contaniers
+created 4 containers
 container 1 : my_task_container_4
 container 2 : my_task_container_5
 container 3 : my_task_container_6
@@ -381,7 +381,7 @@ drwxrwxr-x 2 1000 1000 4096 Feb 14 15:22 data
 
 ## IIII. Task2
 
-In task2, the Cluster Manager will generate a dataset (100000 random float numbers) and save it to shared data volume `data/data.csv`, then excecute parallel data processing code in 4 containers asynchronously. Each container will processing 1/4 of the total data according to the `idx` parameter passed to it.
+In task2, the Cluster Manager will generate a dataset (100000 random float numbers) and save it to shared data volume `data/data.csv`, then execute parallel data processing code in 4 containers asynchronously. Each container will processing 1/4 of the total data according to the `idx` parameter passed to it.
 
 ### 1) command help
 
@@ -415,7 +415,7 @@ csv_path = self.data_path + "/data.csv"
 numpy.savetxt(csv_path, data, delimiter=',')
 ```
 
-create 4 container and exceute data processing parallelly
+create 4 container and execute data processing simultaneously
 ```python
 def raw_run(self, id: str, cmd: str):
     self.cli.api.start(id)
@@ -443,7 +443,7 @@ res = asyncio.get_event_loop().run_until_complete(self.async_task2(ids, csv_path
 
 ## IIII. Task3
 
-In Task3, the Cluster Manager will generate a dataset and save it to shared volume `data/data.ptd`, then excecute a linear regression algorithm in a container to generate a result image under shared vulume `data/result.png` and a training log image `data/train.png`
+In Task3, the Cluster Manager will generate a dataset and save it to shared volume `data/data.ptd`, then execute a linear regression algorithm in a container to generate a result image under shared volume `data/result.png` and a training log image `data/train.png`
 
 ### 1) command help
 ```
@@ -512,4 +512,4 @@ args = parser.parse_args()
 data = torch.load(args.file)
 ```
 
-Linear regression in implemented in `task3.py` with Pytorch.
+Linear regression is implemented in `task3.py` with Pytorch.

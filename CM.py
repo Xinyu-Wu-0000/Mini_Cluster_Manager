@@ -14,7 +14,7 @@ def cli():
 def create(number):
     """Create a certain number of containers"""
     res = CM.create(number)
-    click.echo(f"created {number} contaniers")
+    click.echo(f"created {number} containers")
     for idx, con in enumerate(res):
         print("container", idx + 1, ":", con)
 
